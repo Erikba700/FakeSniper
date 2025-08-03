@@ -1,0 +1,90 @@
+services:
+  sd_parser:
+    build:
+      context: ./Microservice/SC_PARSE
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOST=mariadb
+      - DB_NAME=fakesniper
+      - DB_USER=root
+      - DB_PASSWORD=${DB_PASSWORD}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+
+  screenserv:
+    build:
+      context: ./Microservice/SCREENSERV
+    ports:
+      - "8210:8210"
+    environment:
+      - DB_HOST=mariadb
+      - DB_NAME=fakesniper
+      - DB_USER=root
+      - DB_PASSWORD=${DB_PASSWORD}
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
+
+  news_microservice:
+    build: ./Microservice/SE_SCRAP
+    environment:
+      - DB_HOST=mariadb
+      - DB_NAME=fakesniper
+      - DB_USER=root
+      - DB_PASSWORD=${DB_PASSWORD}
+      - API_KEY=${API_KEY}
+
+  mariadb:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: fakekiller_user
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./DB:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  parser:
+    build:
+      context: ./Microservice/TARGET_SCRAPER
+      dockerfile: Dockerfile
+      args:
+        - PYPROJECT_TOML=pyproject.toml
+    environment:
+      - DB_HOST=mariadb
+      - DB_NAME=fakesniper
+      - DB_USER=root
+      - DB_PASSWORD=${DB_PASSWORD}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./service:/app
+      - ./media:/media
+
+  open_ai_rate:
+    build: ./Microservice/OPEN_AI_RATE
+    environment:
+      - DB_HOST=mariadb
+      - DB_NAME=fakesniper
+      - DB_USER=root
+      - DB_PASSWORD=${DB_PASSWORD}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+
+  main_gate:
+    build: ./Microservice/MAIN_GATE
+    environment:
+      - DB_HOST=mariadb
+      - DB_NAME=fakesniper
+      - DB_USER=root
+      - DB_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "127.0.0.1:8080:8080"
+
+  interface:
+    image: interface-service:latest
+    build: ./Microservice/INTERFACE
+    environment:
+      - DB_HOST=mariadb
+      - DB_NAME=fakesniper
+      - DB_USER=root
+      - DB_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "3000:3000"

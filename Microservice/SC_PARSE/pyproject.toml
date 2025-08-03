@@ -1,0 +1,22 @@
+[project]
+name = "Fakesniper"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Erik Badalyan",email = "Erik.Badalyan@Livanova.com"}
+]
+requires-python = ">=3.12"
+dependencies = [
+    "mysql-connector-python",
+    "schedule (>=1.2.2,<2.0.0)",
+    "requests",
+    "beautifulsoup4",
+    "cloudscraper",
+    "openai==0.28"
+]
+
+package-mode = false
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

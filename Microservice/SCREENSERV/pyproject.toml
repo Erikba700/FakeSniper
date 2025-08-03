@@ -1,0 +1,20 @@
+[project]
+name = "Fakesniper"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Erik Badalyan",email = "Erik.Badalyan@Livanova.com"}
+]
+requires-python = ">=3.12"
+dependencies = [
+    "boto3 (>=1.39.11,<2.0.0)",
+    "mysql-connector-python",
+    "schedule (>=1.2.2,<2.0.0)",
+    "playwright"
+]
+
+package-mode = true
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,46 @@
+# IDEs
+.idea/
+*.iml
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Node.js
+node_modules/
+.next/
+dist/
+pnpm-lock.yaml
+yarn.lock
+
+# Tailwind/PostCSS
+postcss.config.*.js
+tailwind.config.*.js
+tailwind.config.*.ts
+
+# Go
+vendor/
+
+# Docker
+*.log
+
+# VSCode (if applicable)
+.vscode/
+
+# Ignore compiled outputs or test artifacts (optional)
+build/
+coverage/
+
+# Ignore media and placeholder images if needed (optional)
+*.jpg
+*.jpeg
+*.png
+*.svg
+
+# Poetry files (optional, if you don't want lockfiles in VCS)
+# poetry.lock
+
