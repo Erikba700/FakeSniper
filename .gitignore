@@ -36,8 +36,6 @@ build/
 coverage/
 
 # Ignore media and placeholder images if needed (optional)
-*.jpg
-*.jpeg
 *.png
 *.svg
 
