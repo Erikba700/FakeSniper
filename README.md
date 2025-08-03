@@ -1,5 +1,8 @@
 # FakeSniper Project
 
+![FakeSniper](Fake_sniper.jpg)
+
+
 FakeSniper is an innovative project designed to analyze news articles for authenticity. The project receives a news URL and performs a comprehensive analysis to determine the credibility of the news. Here's how it works:
 
 1. **News Collection**: FakeSniper uses SerpAPI to search for similar news articles. These articles are collected and stored in a database for further analysis.
@@ -14,6 +17,9 @@ The project is orchestrated using Docker Compose, allowing for seamless deployme
 
 
 This project consists of several microservices, each serving a specific purpose. The services are orchestrated using Docker Compose.
+
+![FakeSniper](About_us.jpg)
+
 
 ## Microservices Overview
 
